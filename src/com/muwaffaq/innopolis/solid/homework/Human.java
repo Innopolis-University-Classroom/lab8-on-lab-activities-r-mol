@@ -5,7 +5,7 @@ import java.util.List;
 
 // lab work
 // This Class violates all SOLID Principles, fix it in a Logical way
-public class Human implements Needs {
+public class Human implements Needs,SayHello,Hobbies,Tax,NickName{
 
     private String name;
     private String nickname;
@@ -14,22 +14,13 @@ public class Human implements Needs {
 
     enum Languages {Arabic, English, Japanese}
 
-    String sayHello(Languages languages) {
-        if (languages == Languages.Arabic)
-            return "مرحبا";
-        return "Hello";
-    }
-
-    void calculateTax(int percentage) {
+    @Override
+    public void calculateTax(int percentage) {
         salary = salary * percentage;
     }
 
-    int addHobby(String hobby) {
-        hobbies.add(hobby);
-        return hobbies.size();
-    }
-
-    void creatNickName(String postFix) {
+    @Override
+    public void creatNickName(String postFix) {
         nickname = name.concat(postFix);
     }
 
@@ -55,6 +46,19 @@ public class Human implements Needs {
     @Override
     public void becomeEmployee() {
 
+    }
+
+    @Override
+   public String sayHello(Human.Languages languages) {
+        if (languages == Human.Languages.Arabic)
+            return "مرحبا";
+        return "Hello";
+    }
+
+    @Override
+    public int addHobby(String hobby) {
+        hobbies.add(hobby);
+        return hobbies.size();
     }
 
     public static void main(String[] args) {
